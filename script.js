@@ -16,27 +16,15 @@ document.querySelector('.menu-toggle')?.addEventListener('click', () => {
   document.querySelector('.nav-links')?.classList.toggle('active');
 });
 
-// Form validation
-document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const status = document.getElementById('formStatus');
+fetch("casestudies/casestudy1.txt")
+  .then(r => r.text())
+  .then(t => {
+    document.getElementById("content1").textContent = t;
+  });
 
-  if (!name || !email || !message) {
-    status.textContent = 'Please fill out all fields.';
-    status.style.color = '#FF0000';
-    return;
-  }
+fetch("casestudies/casestudy2.txt")
+  .then(r => r.text())
+  .then(t => {
+    document.getElementById("content2").textContent = t;
+  });
 
-  if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    status.textContent = 'Please enter a valid email address.';
-    status.style.color = '#FF0000';
-    return;
-  }
-
-  status.textContent = 'Thank you! Your message has been sent.';
-  status.style.color = '#000000';
-  this.reset();
-});
